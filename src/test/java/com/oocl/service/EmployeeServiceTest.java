@@ -46,7 +46,7 @@ public class EmployeeServiceTest {
     @Test
     public void return_all_employee_Test() {
         List<Employee> employeeList = EmpolyeeApiApplication.allEmployee();
-        EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
+
         List<Employee> employeeList1 = employeeService.findAllEmployee();
         assertThat(employeeList).isEqualTo(employeeList1);
     }
@@ -92,7 +92,7 @@ public class EmployeeServiceTest {
 
     @Test
     public void return_update_info_when_employee_is_exist_Test() {
-        EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
+
         List<Employee> employeeList = employeeService.findAllEmployee();
         Employee employee_1 = employeeList.stream().filter((item)->item.getId()==1).collect(Collectors.toList()).get(0);
         List<Employee> employeeList1 = employeeService.updateEmployee(1,new Employee(null,null,"TT",null,null));
@@ -107,7 +107,7 @@ public class EmployeeServiceTest {
 
     @Test
     public void return_employee_when_employee_is_exist_Test() {
-        EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
+
         Employee employee = employeeService.findOneOfEmployee(1);
         assertThat(employee.getId()).isEqualTo(1);
     }
@@ -115,11 +115,20 @@ public class EmployeeServiceTest {
 
     @Test
     public void return_employeeList_size_is_3_when_find_employee_by_male_Test() {
-        EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
+
         List<Employee> employeeList = employeeService.findEmployeeByGender("male");
         List<Employee> employeeList1 = EmpolyeeApiApplication.allEmployee().stream().filter((item) -> item.getGender().equals("male")).collect(Collectors.toList());
         assertThat(employeeList).isEqualTo(employeeList1);
     }
+
+
+    @Test
+    public void return_employeeList_when_select_by_page_Test(){
+        List<Employee> employeeList = employeeService.getEmployeeByPageAndpageSize(1, 2);
+        List<Employee> employeeList1 = EmpolyeeApiApplication.allEmployee().stream().limit(2).collect(Collectors.toList());
+        assertThat(employeeList).isEqualTo(employeeList1);
+    }
+
 
 
 

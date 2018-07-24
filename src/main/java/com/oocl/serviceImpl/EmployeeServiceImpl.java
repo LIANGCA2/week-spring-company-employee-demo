@@ -7,6 +7,7 @@ import com.oocl.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -81,5 +82,17 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<Employee> findEmployeeByGender(String gender) {
         return employeeList.stream().filter((item)->item.getGender()==gender).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Employee> getEmployeeByPageAndpageSize(int page, int pageSize) {
+        List<Employee> employees = new ArrayList<>();
+int start = (page-1)*pageSize;
+int end = page*pageSize;
+for(int i =start;i<end;i++){
+    employees.add(employeeList.get(i));
+}
+            return employees;
+
     }
 }
