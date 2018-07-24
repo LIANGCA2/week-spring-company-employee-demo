@@ -14,7 +14,7 @@ public interface EmployeeService {
 
     List<Employee> updateEmployee(Integer id, Employee employee);
 
-    Employee findOneOfEmployee(Integer id);
+    List<Employee> findOneOfEmployee(Integer id);
 
     List<Employee> findEmployeeByGender(String gender);
 

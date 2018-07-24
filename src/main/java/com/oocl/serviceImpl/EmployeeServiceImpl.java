@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -75,13 +74,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee findOneOfEmployee(Integer id) {
-        return employeeList.stream().filter((item)->item.getId()==id).collect(Collectors.toList()).get(0);
+    public List<Employee> findOneOfEmployee(Integer id) {
+        return employeeList.stream().filter((item)->item.getId()==id).collect(Collectors.toList());
     }
 
     @Override
     public List<Employee> findEmployeeByGender(String gender) {
-        return employeeList.stream().filter((item)->item.getGender()==gender).collect(Collectors.toList());
+        System.out.println(gender);
+        return employeeList.stream().filter((item)->item.getGender().equals(gender)).collect(Collectors.toList());
     }
 
     @Override

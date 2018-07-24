@@ -2,9 +2,11 @@ package com.oocl.controller;
 
 import com.oocl.model.Employee;
 import com.oocl.service.EmployeeService;
+import com.oocl.util.TypeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 @RestController
@@ -20,18 +22,24 @@ public class EmployeeController {
         return employeeService.findAllEmployee();
     }
 
-    @GetMapping("/employees/{id}")
+
+    @GetMapping("/employees/{param}")
     @ResponseBody
-    public Employee findOneOfEmployee(@PathVariable Integer id) {
-        return employeeService.findOneOfEmployee(id);
+    public List<Employee> findOneOfEmployee(@PathVariable String param) {
+        if(TypeUtil.isNum(param)){
+            return employeeService.findOneOfEmployee(Integer.parseInt(param));
+        }else {
+
+            return employeeService.findEmployeeByGender(param);
+        }
     }
 
-//    @GetMapping("/employees/{param}")
-//    @ResponseBody
-//    public List<Employee> findOneOfEmployee(@PathVariable String param) {
-//        if(param)
-//        return employeeService.findEmployeeByGender(gender);
-//    }
+
+    @GetMapping("/employees/page/{page}/pageSize/{pageSize}")
+    @ResponseBody
+    public List<Employee> selectEmployeeByPageAndPageSize(@PathVariable Integer page,@PathVariable Integer pageSize) {
+      return employeeService.getEmployeeByPageAndpageSize(page,pageSize);
+    }
 
 
 

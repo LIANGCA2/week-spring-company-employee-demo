@@ -1,5 +1,7 @@
 package com.oocl.model;
 
+import java.util.Objects;
+
 public class Company {
     private Integer id;
     private String companyName;
@@ -37,4 +39,16 @@ public class Company {
 
     public Company() {
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Company company = (Company) o;
+        return Objects.equals(id, company.id) &&
+                Objects.equals(companyName, company.companyName) &&
+                Objects.equals(employeesNumber, company.employeesNumber);
+    }
+
+
 }
