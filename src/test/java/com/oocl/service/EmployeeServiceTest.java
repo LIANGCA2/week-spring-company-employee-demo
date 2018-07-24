@@ -59,6 +59,14 @@ public class EmployeeServiceTest {
 
 
 
+    @Test
+    public void return_employee_when_employee_is_exist_Test() {
+        EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
+        Employee employee = employeeService.findOneOfEmployee(1);
+        assertThat(employee.getId()).isEqualTo(1);
+    }
+
+
 
 
 
