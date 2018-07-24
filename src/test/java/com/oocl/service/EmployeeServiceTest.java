@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 
@@ -66,6 +67,14 @@ public class EmployeeServiceTest {
         assertThat(employee.getId()).isEqualTo(1);
     }
 
+
+    @Test
+    public void return_employeeList_size_is_3_when_find_employee_by_male_Test() {
+        EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
+        List<Employee> employeeList = employeeService.findEmployeeByGender("male");
+        List<Employee> employeeList1 = EmpolyeeApiApplication.allEmployee().stream().filter((item) -> item.getGender().equals("male")).collect(Collectors.toList());
+        assertThat(employeeList).isEqualTo(employeeList1);
+    }
 
 
 
