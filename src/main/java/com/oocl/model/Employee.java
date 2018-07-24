@@ -4,7 +4,10 @@ import java.util.Objects;
 
 public class Employee {
 
+
+
     private Integer id;
+    private Integer companyId;
     private String name;
     private Integer age;
     private String gender;
@@ -25,11 +28,11 @@ public class Employee {
     }
 
 
-    public Employee(Integer id, String name, Integer age, String gender) {
+    public Employee(Integer id, Integer companyId, String name, Integer age, String gender) {
         this.id = id;
+        this.companyId = companyId;
         this.name = name;
         this.age = age;
-
         this.gender = gender;
     }
 
@@ -37,6 +40,13 @@ public class Employee {
         this.id = id;
     }
 
+    public Integer getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Integer companyId) {
+        this.companyId = companyId;
+    }
 
     public Integer getId() {
         return id;

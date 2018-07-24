@@ -2,7 +2,9 @@ package com.oocl.serviceImpl;
 
 import com.oocl.EmpolyeeApiApplication;
 import com.oocl.model.Employee;
+import com.oocl.service.CompanyService;
 import com.oocl.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -11,6 +13,10 @@ import java.util.stream.Collectors;
 
 @Service("employeeService")
 public class EmployeeServiceImpl implements EmployeeService {
+
+    @Autowired
+    private CompanyService companyService;
+
     private List<Employee> employeeList = EmpolyeeApiApplication.allEmployee();
     @Override
     public List<Employee> findAllEmployee() {
@@ -19,14 +25,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee addEmployee(Employee employee) {
-        employeeList.add(employee);
-        return employeeList.stream().filter((item)->item.equals(employee)).collect(Collectors.toList()).get(0);
-    }
+        if(companyService.findAllCompany().stream().filter(item->item.getId()==employee.getCompanyId()).collect(Collectors.toList()).size()>0) {
+            employeeList.add(employee);
+            return employeeList.stream().filter((item) -> item.equals(employee)).collect(Collectors.toList()).get(0);
+        }else{
+            return null;
+        }
+        }
 
     @Override
     public  List<Employee> deleteEmployee(Integer id) {
         for(int i=0;i<employeeList.size();i++){
             if(employeeList.get(i).getId()==id){
+                Integer companyId = employeeList.get(i).getCompanyId();
+                companyService.deleteEmployeeFromCompany(companyId);
                 employeeList.remove(i);
                 break;
             }
