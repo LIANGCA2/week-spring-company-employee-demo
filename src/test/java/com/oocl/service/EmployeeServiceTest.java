@@ -43,4 +43,23 @@ public class EmployeeServiceTest {
         assertThat(employeeList.size()).isEqualTo(size);
     }
 
+
+    @Test
+    public void return_update_info_when_employee_is_exist_Test() {
+        EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
+        List<Employee> employeeList = employeeService.findAllEmployee();
+        Employee employee_1 = employeeList.stream().filter((item)->item.getId()==1).collect(Collectors.toList()).get(0);
+        List<Employee> employeeList1 = employeeService.updateEmployee(1,new Employee(null,"TT",null,null));
+        Employee employee_2 = employeeList1.stream().filter((item)->item.getId()==1).collect(Collectors.toList()).get(0);
+        assertThat(employee_2.getName()).isEqualTo("TT");
+        assertThat(employee_1.getId()).isEqualTo(employee_2.getId());
+        assertThat(employee_1.getAge()).isEqualTo(employee_2.getAge());
+        assertThat(employee_1.getGender()).isEqualTo(employee_2.getGender());
+    }
+
+
+
+
+
+
 }
