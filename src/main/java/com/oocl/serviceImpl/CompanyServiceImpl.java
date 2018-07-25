@@ -46,5 +46,27 @@ public class CompanyServiceImpl implements CompanyService {
 
     }
 
+    @Override
+    public List<Company> updateCompany(Integer id, Company company) {
+        for(int i=0;i<companyList.size();i++){
+            if(companyList.get(i).getId()==id){
+
+                if (company.getId()!=null){
+                    companyList.get(i).setId(company.getId());
+                }
+                if (company.getCompanyName()!=null){
+                    companyList.get(i).setCompanyName(company.getCompanyName());
+                }
+
+
+
+
+                break;
+            }
+        }
+
+        return companyList;
+    }
+
 
 }

@@ -59,4 +59,17 @@ public class CompanyServiceTest {
         assertThat(companyService.findAllCompany().stream().filter(item->item.getId()==6).collect(Collectors.toList()).get(0)).isEqualTo(company);
     }
 
+
+    @Test
+    public void return_update_info_when_Company_is_exist_Test() {
+
+        List<Company> companyList = companyService.findAllCompany();
+        Company company_1 = companyList.stream().filter((item)->item.getId()==1).collect(Collectors.toList()).get(0);
+        List<Company> companyList1 = companyService.updateCompany(1,new Company(null,"OOLV"));
+        Company company_2 = companyList1.stream().filter((item)->item.getId()==1).collect(Collectors.toList()).get(0);
+        assertThat(company_2.getCompanyName()).isEqualTo("OOLV");
+        assertThat(company_1.getId()).isEqualTo(company_2.getId());
+    }
+
+
 }

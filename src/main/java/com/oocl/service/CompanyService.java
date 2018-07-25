@@ -14,4 +14,6 @@ public interface CompanyService {
     List<Company> getCompanyByPageAndpageSize(Integer page, Integer pageSize);
 
     Company addCompany(Company company);
+
+    List<Company> updateCompany(Integer id, Company company);
 }

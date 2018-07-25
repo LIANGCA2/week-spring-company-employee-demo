@@ -69,17 +69,17 @@ public class CompanyController {
         return newCompany;
     }
 
-    @DeleteMapping("/employees/{id}")
+    @DeleteMapping("/companies/{id}")
     @ResponseBody
     public List<Employee> deleteEmployee(@PathVariable Integer id ){
         employeeService.deleteEmployee(id);
         return employeeService.deleteEmployee(id);
     }
 
-    @PatchMapping("/employees/{id}")
+    @PatchMapping("/companies/{id}")
     @ResponseBody
-    public List<Employee> updateEmployee(@PathVariable Integer id,@RequestBody Employee employee){
-        return employeeService.updateEmployee(id,employee);
+    public List<Company> updateCompany(@PathVariable Integer id,@RequestBody Company company){
+        return companyService.updateCompany(id,company);
     }
 
 
