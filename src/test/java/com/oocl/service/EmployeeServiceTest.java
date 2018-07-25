@@ -118,6 +118,14 @@ public class EmployeeServiceTest {
         assertThat(EqualUtil.EmployeeListisEqual(employeeList1,employeeList)).isEqualTo(true);
     }
 
+    @Test
+    public void return_employeeList_when_input_company_id_Test() {
+
+        List<Employee> employeeList = employeeService.findEmployeeByCompanyId(1);
+        List<Employee> employeeList1 = EmpolyeeApiApplication.allEmployee();
+        assertThat(EqualUtil.EmployeeListisEqual(employeeList,employeeList1)).isEqualTo(true);
+    }
+
 
 
 

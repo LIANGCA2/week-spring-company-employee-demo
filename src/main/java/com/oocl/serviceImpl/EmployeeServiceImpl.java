@@ -95,4 +95,9 @@ for(int i =start;i<end;i++){
             return employees;
 
     }
+
+    @Override
+    public List<Employee> findEmployeeByCompanyId(Integer companyId) {
+       return  findAllEmployee().stream().filter(item -> item.getCompanyId() == companyId).collect(Collectors.toList());
+    }
 }
