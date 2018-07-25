@@ -5,12 +5,11 @@ import java.util.Objects;
 public class Company {
     private Integer id;
     private String companyName;
-    private Integer employeesNumber;
 
-    public Company(Integer id, String companyName, Integer employeesNumber) {
+    public Company(Integer id, String companyName) {
         this.id = id;
         this.companyName = companyName;
-        this.employeesNumber = employeesNumber;
+
     }
 
     public Integer getId() {
@@ -29,13 +28,6 @@ public class Company {
         this.companyName = companyName;
     }
 
-    public Integer getEmployeesNumber() {
-        return employeesNumber;
-    }
-
-    public void setEmployeesNumber(Integer employeesNumber) {
-        this.employeesNumber = employeesNumber;
-    }
 
     public Company() {
     }
@@ -46,8 +38,7 @@ public class Company {
         if (o == null || getClass() != o.getClass()) return false;
         Company company = (Company) o;
         return Objects.equals(id, company.id) &&
-                Objects.equals(companyName, company.companyName) &&
-                Objects.equals(employeesNumber, company.employeesNumber);
+                Objects.equals(companyName, company.companyName) ;
     }
 
 

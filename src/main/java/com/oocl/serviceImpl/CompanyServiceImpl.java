@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service("companyService")
@@ -20,13 +21,10 @@ public class CompanyServiceImpl implements CompanyService {
         return companyList;
     }
 
-
     @Override
-    public void deleteEmployeeFromCompany(Integer companyId) {
-        for(int i =0;i<companyList.size();i++){
-            if(companyList.get(i).getId()==companyId){
-                companyList.get(i).setEmployeesNumber(companyList.get(i).getEmployeesNumber()-1);
-            }
-        }
+    public Company findCompanyById(Integer id) {
+        return companyList.stream().filter(item->item.getId()==id).collect(Collectors.toList()).get(0);
     }
+
+
 }

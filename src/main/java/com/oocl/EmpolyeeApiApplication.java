@@ -30,8 +30,8 @@ public class EmpolyeeApiApplication {
     @Bean
     public static List<Company> allCompany() {
         List<Company> companyList = new ArrayList<>();
-        companyList.add(new Company(1, "oocl", 5));
-        companyList.add(new Company(2, "meizu", 0));
+        companyList.add(new Company(1, "oocl"));
+        companyList.add(new Company(2, "meizu"));
         return companyList;
     }
 }

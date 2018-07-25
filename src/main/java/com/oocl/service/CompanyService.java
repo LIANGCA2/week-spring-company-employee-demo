@@ -5,7 +5,9 @@ import com.oocl.model.Company;
 import java.util.List;
 
 public interface CompanyService {
-    void deleteEmployeeFromCompany(Integer companyId);
+
 
     List<Company> findAllCompany();
+
+    Company findCompanyById(Integer id);
 }

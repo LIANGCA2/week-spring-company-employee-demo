@@ -35,4 +35,12 @@ public class CompanyServiceTest {
         assertThat(EqualUtil.CompanyListisEqual(companyList,companyList1)).isEqualTo(true);
     }
 
+    @Test
+    public void return_one_Company_Test() {
+        Company company= companyService.findCompanyById(1);
+        assertThat(company.getId()).isEqualTo(1);
+    }
+
+
+
 }

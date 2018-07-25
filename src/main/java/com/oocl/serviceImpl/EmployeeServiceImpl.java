@@ -38,7 +38,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         for(int i=0;i<employeeList.size();i++){
             if(employeeList.get(i).getId()==id){
                 Integer companyId = employeeList.get(i).getCompanyId();
-                companyService.deleteEmployeeFromCompany(companyId);
                 employeeList.remove(i);
                 break;
             }
