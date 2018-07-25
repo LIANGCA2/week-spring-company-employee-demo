@@ -10,4 +10,6 @@ public interface CompanyService {
     List<Company> findAllCompany();
 
     Company findCompanyById(Integer id);
+
+    List<Company> getCompanyByPageAndpageSize(Integer page, Integer pageSize);
 }

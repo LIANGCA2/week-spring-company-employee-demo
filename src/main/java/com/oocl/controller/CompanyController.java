@@ -48,4 +48,21 @@ public class CompanyController {
        return companyWithEmployee;
     }
 
+    @GetMapping("/companies/{id}/employees")
+    @ResponseBody
+    public List<Employee> findEmployeeByCompanyId(@PathVariable Integer id) {
+
+        return employeeService.findEmployeeByCompanyId(id);
+    }
+
+
+
+
+    @GetMapping("/companies/page/{page}/pageSize/{pageSize}")
+    @ResponseBody
+    public List<Company> selectCompanyByPageAndPageSize(@PathVariable Integer page,@PathVariable Integer pageSize) {
+        return companyService.getCompanyByPageAndpageSize(page,pageSize);
+    }
+
+
 }
