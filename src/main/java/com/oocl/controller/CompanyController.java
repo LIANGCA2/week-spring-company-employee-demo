@@ -7,10 +7,7 @@ import com.oocl.model.Employee;
 import com.oocl.service.CompanyService;
 import com.oocl.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +59,27 @@ public class CompanyController {
     @ResponseBody
     public List<Company> selectCompanyByPageAndPageSize(@PathVariable Integer page,@PathVariable Integer pageSize) {
         return companyService.getCompanyByPageAndpageSize(page,pageSize);
+    }
+
+
+    @PostMapping("/companies")
+    @ResponseBody
+    public Company addCompany(@RequestBody Company company){
+        Company newCompany = companyService.addCompany(company);
+        return newCompany;
+    }
+
+    @DeleteMapping("/employees/{id}")
+    @ResponseBody
+    public List<Employee> deleteEmployee(@PathVariable Integer id ){
+        employeeService.deleteEmployee(id);
+        return employeeService.deleteEmployee(id);
+    }
+
+    @PatchMapping("/employees/{id}")
+    @ResponseBody
+    public List<Employee> updateEmployee(@PathVariable Integer id,@RequestBody Employee employee){
+        return employeeService.updateEmployee(id,employee);
     }
 
 

@@ -39,5 +39,12 @@ public class CompanyServiceImpl implements CompanyService {
         return companys;
     }
 
+    @Override
+    public Company addCompany(Company company) {
+        companyList.add(company);
+            return companyList.stream().filter((item) -> item.equals(company)).collect(Collectors.toList()).get(0);
+
+    }
+
 
 }

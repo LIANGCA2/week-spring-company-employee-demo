@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.fest.assertions.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
 
 public class CompanyServiceTest {
 
@@ -51,6 +52,11 @@ public class CompanyServiceTest {
         assertThat(EqualUtil.CompanyListisEqual(companyList,companyList1)).isEqualTo(true);
     }
 
+    @Test
+    public void return_add_company_sucessful_when_add_company_Test() {
 
+        Company company = companyService.addCompany(new Company(6,"thoughtWork"));
+        assertThat(companyService.findAllCompany().stream().filter(item->item.getId()==6).collect(Collectors.toList()).get(0)).isEqualTo(company);
+    }
 
 }
