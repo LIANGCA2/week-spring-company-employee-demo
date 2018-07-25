@@ -16,4 +16,6 @@ public interface CompanyService {
     Company addCompany(Company company);
 
     List<Company> updateCompany(Integer id, Company company);
+
+    List<Company> deleteCompany(Integer id);
 }

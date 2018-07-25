@@ -11,11 +11,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.fest.assertions.api.Assertions.assertThat;
+import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.when;
 
 public class CompanyServiceTest {
@@ -70,6 +72,26 @@ public class CompanyServiceTest {
         assertThat(company_2.getCompanyName()).isEqualTo("OOLV");
         assertThat(company_1.getId()).isEqualTo(company_2.getId());
     }
+
+    @Test
+    public void return_delete_Company_unsucessful_when_employee_is_not_exist_Test() {
+        List<Company> companyList = companyService.findAllCompany();
+        int size = companyList.size();
+        when(employeeService.findAllEmployee()).thenReturn(new ArrayList<>());
+        companyService.deleteCompany(6);
+        assertThat(companyList.size()).isEqualTo(size);
+    }
+
+    @Test
+    public void return_delete_Company_sucessful_when_employee_is__exist_Test() {
+        List<Company> companyList = companyService.findAllCompany();
+        int size = companyList.size();
+        when(employeeService.findAllEmployee()).thenReturn(EmpolyeeApiApplication.allEmployee());
+        when(employeeService.deleteEmployee(anyInt())).thenReturn(null);
+        companyService.deleteCompany(1);
+        assertThat(companyList.stream().filter(item->item.getId()==1).collect(Collectors.toList()).size()).isEqualTo(0);
+    }
+
 
 
 }

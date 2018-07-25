@@ -71,9 +71,8 @@ public class CompanyController {
 
     @DeleteMapping("/companies/{id}")
     @ResponseBody
-    public List<Employee> deleteEmployee(@PathVariable Integer id ){
-        employeeService.deleteEmployee(id);
-        return employeeService.deleteEmployee(id);
+    public List<Company> deleteCompany(@PathVariable Integer id ){
+       return companyService.deleteCompany(id);
     }
 
     @PatchMapping("/companies/{id}")

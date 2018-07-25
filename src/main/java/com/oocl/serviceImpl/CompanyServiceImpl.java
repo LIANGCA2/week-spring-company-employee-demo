@@ -4,6 +4,8 @@ import com.oocl.EmpolyeeApiApplication;
 import com.oocl.model.Company;
 import com.oocl.model.Employee;
 import com.oocl.service.CompanyService;
+import com.oocl.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -15,6 +17,8 @@ import java.util.stream.Collectors;
 @Service("companyService")
 public class CompanyServiceImpl implements CompanyService {
 
+    @Autowired
+            private EmployeeService employeeService;
 
     List<Company> companyList = EmpolyeeApiApplication.allCompany();
 
@@ -66,6 +70,23 @@ public class CompanyServiceImpl implements CompanyService {
         }
 
         return companyList;
+    }
+
+    @Override
+    public List<Company> deleteCompany(Integer id) {
+        List<Employee> employeeList = employeeService.findAllEmployee();
+        for(Integer i = 0;i<employeeList.size();i++){
+            if(employeeList.get(i).getCompanyId()==id){
+                employeeService.deleteEmployee(employeeList.get(i).getId());
+            }
+        }
+        for(int i = 0;i<companyList.size();i++){
+            if(companyList.get(i).getId()==id){
+                companyList.remove(i);
+                break;
+            }
+        }
+        return  companyList;
     }
 
 
